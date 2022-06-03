@@ -9,7 +9,8 @@ const handleMessage = require('./helpers/message');
 const client = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS, 
-        Intents.FLAGS.GUILD_MESSAGES
+        Intents.FLAGS.GUILD_MESSAGES, 
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS
     ] 
 });
 
@@ -30,6 +31,14 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', async message => {
+    if (message.author.bot) return;
+
+
+    if (message.content.toLocaleLowerCase().includes("bite"))
+        return message.reply("8===D:sweat_drops::sweat_drops::sweat_drops::sweat_drops::sweat_drops:")
+
+    console.log(message);
+
 
     console.log(`The message be posted by ${message.author.username}`);
     console.log(`The content is : ${message.content}`);
