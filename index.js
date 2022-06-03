@@ -3,8 +3,15 @@ const config = require('./config.json');
 const fs = require('fs');
 
 const handleCommand = require('./helpers/command');
+const handleMessageComponents = require('./helpers/message-component');
+const handleMessage = require('./helpers/message');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ 
+    intents: [
+        Intents.FLAGS.GUILDS, 
+        Intents.FLAGS.GUILD_MESSAGES
+    ] 
+});
 
 // commands
 client.commands = new Collection();
@@ -22,9 +29,20 @@ client.once('ready', () => {
     console.log("je suis pret !");
 });
 
-client.on('interactionCreate', async interaction => {
-    if (interaction.isCommand()) handleCommand(client, interaction)
+client.on('messageCreate', async message => {
+
+    console.log(`The message be posted by ${message.author.username}`);
+    console.log(`The content is : ${message.content}`);
+})
+
+client.on('interactionCreate', interaction => {
+    if (interaction.isCommand())
+        handleCommand(client, interaction)
+    if (interaction.isMessageComponent()) 
+        handleMessageComponents(client, interaction);
 
 });
+
+
 
 client.login(config.discord_bot_token);
