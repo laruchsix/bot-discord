@@ -1,43 +1,44 @@
 import React, {useState} from "react";
-import {useHistory} from "react-router-dom";
 
 import {
     BrowserRouter,
-    Switch,
+    Routes,
     Route,
-    Link, useHistory
+    NavLink
 } from "react-router-dom";
-import Home from "./home/Home";
+import "../style/Menu.css";
+
+/*import Home from "./home/Home";
 import Login from "./Login";
 import Register  from "./Register";
 import User  from "./user/User";
 
-import "../style/Menu.css";
-import Manage from "./admin/Manage";
+import Manage from "./admin/Manage";*/
 
 const Menu = () => {
-
-    const history = useHistory();
-    const [token, setToken] = useState();
+    const [token, setToken] = useState("initial");
     const [titlePage, setTitlePage] = useState("Home");
 
-    const updateToken = (value) => {
+    if (token === "initial") {
+        // TODO : check if token is in cookies
+    }
+
+    /*const updateToken = (value) => {
         setToken(value);
     }
 
     const updateTitlePage = (value) => {
         setTitlePage(value);
-    }
+    }*/
 
     const userElems = () => {
-        if (token === undefined) {
+        if (token || token === "initial") {
             return (
                 <>
-                    <Link className={"nav-button"} to="/login" >Login</Link>
-                    <Link className={"nav-button"} to="/register">Register</Link>
+                    <NavLink className={"nav-button"} to="/login" >Login</NavLink>
                 </>)
         }
-        else {
+        /*else {
            return (
                <>
                    <h1 className={"user-name"}>{token.name}</h1>
@@ -52,7 +53,8 @@ const Menu = () => {
                     </Link>
                 </div>
             </>)
-        }
+        }*/
+        return null;
     }
 
     const logout = () => {
@@ -84,16 +86,30 @@ const Menu = () => {
             </header>
             <div className={"center"}>
                 <aside>
-                    <Link className={"nav-link"} to="/">Home</Link>
+                    <NavLink className={"nav-link"} to="/">Home</NavLink>
                     {
                         (token && token.admin) ?
-                            <Link className={"nav-link"} to="/manage">Manage User</Link>
+                            <NavLink className={"nav-link"} to="/manage">Manage User</NavLink>
                             : <></>
-                    }
+                    } 
                 </aside>
                 <div className={"page-content"}>
-                    <Switch>
-                        <Route path="/profile">
+                    <Routes>
+                        <Route path="/profile" element={<h1>Profile</h1>} />
+                        <Route path="/login" element={<h1>Login</h1>} />
+                        <Route path="/manage" element={<h1>Manage</h1>} />
+                        <Route path="/" element={<h1>Home</h1>} />
+                    </Routes>
+                </div> 
+            </div>
+            <footer>
+                footer
+            </footer>
+        </BrowserRouter>
+
+    );
+/**
+ * <Route path="/profile">
                             <User updateToken={updateToken} token={token}/>
                         </Route>
                         <Route path="/login">
@@ -108,20 +124,7 @@ const Menu = () => {
                         <Route path="/">
                             <Home token={token} updateToken={updateToken} title={titlePage} updateTitle={updateTitlePage}/>
                         </Route>
-
-                    </Switch>
-                </div>
-            </div>
-            <footer>
-                <p style={{color : "white"}}>
-                    By EUR and almost EUR company
-                </p>
-            </footer>
-        </BrowserRouter>
-
-    );
-
-
+ */
 }
 
 export default Menu;

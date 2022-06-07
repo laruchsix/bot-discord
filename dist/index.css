@@ -11,4 +11,8 @@ body {
   background-color: #98c1d9;
 }
 
+header {
+  display: flex;
+}
+
 /*# sourceMappingURL=index.css.map */

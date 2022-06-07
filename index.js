@@ -2,9 +2,9 @@ const { Client, Intents, Collection } = require('discord.js');
 const config = require('./config.json');
 const fs = require('fs');
 
-const handleCommand = require('./helpers/command');
-const handleMessageComponents = require('./helpers/message-component');
-const handleMessage = require('./helpers/message');
+const handleCommand = require('./src/bot/helpers/command');
+const handleMessageComponents = require('./src/bot/helpers/message-component');
+const handleMessage = require('./src/bot/helpers/message');
 
 const client = new Client({ 
     intents: [
@@ -18,11 +18,11 @@ const client = new Client({
 
 // commands
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./src/bot/commands').filter(file => file.endsWith('.js'));
 
 // include files in the colection
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    const command = require(`./src/bot/commands/${file}`);
     client.commands.set(command.data.name, command);
 }
 

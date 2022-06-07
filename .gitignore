@@ -1,3 +1,18 @@
 node_modules/*
 
 config.json 
+
+.parcel-cache
+.parcel-cache/*
+
+.vscode
+.vscode/*
+
+dist
+dist/*
+.parcel-cache/5b11f978b6dfd1c4
+.parcel-cache/8736a2ab4743d2dc
+.parcel-cache/bd80eeaad5f7aeb5
+.parcel-cache/c03f3f73dba0fc39.txt
+.parcel-cache/data.mdb
+.parcel-cache/lock.mdb
