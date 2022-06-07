@@ -32,14 +32,14 @@ const Menu = () => {
     }*/
 
     const userElems = () => {
-        if (token || token === "initial") {
+        if (token || token === "initial") 
             return (
-                <>
-                    <NavLink className={"nav-button"} to="/login" >Login</NavLink>
-                </>)
-        }
-        /*else {
-           return (
+                <NavLink className={"nav-button"} to="/login"> Login </NavLink>
+            );
+        else 
+          
+            return (<h1>user-elems</h1>);
+            /*</h1>return (
                <>
                    <h1 className={"user-name"}>{token.name}</h1>
                 <button className={"nav-button"} onClick={logout}>Logout</button>
@@ -51,10 +51,9 @@ const Menu = () => {
                             src="/basic_user_image.png"
                             alt="User Image"/>
                     </Link>
-                </div>
-            </>)
-        }*/
-        return null;
+                </div> 
+            </>)*/
+        
     }
 
     const logout = () => {
