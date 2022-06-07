@@ -4,17 +4,46 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "start-dev": "nodemon index.js"
+    "startdev": "nodemon server.js",
+    "startweb": "parcel src/app/index.jsx",
+    "build": "parcel build src/app/index.jsx"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^0.13.0",
     "@discordjs/rest": "^0.4.1",
+    "buffer": "^6.0.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "discord-api-types": "^0.33.2",
     "discord.js": "^13.7.0",
-    "nodemon": "^2.0.16"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16",
+    "parcel": "^2.6.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
+    "socket.io": "^4.5.1",
+    "underscore": "^1.13.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
   }
 }

@@ -12,6 +12,8 @@ const client = new Client({
         Intents.FLAGS.GUILD_MESSAGES, 
         Intents.FLAGS.GUILD_MESSAGE_REACTIONS
     ] 
+
+
 });
 
 // commands
@@ -52,6 +54,26 @@ client.on('interactionCreate', interaction => {
 
 });
 
-
-
 client.login(config.discord_bot_token);
+
+// the server
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv").config();
+const cookieParser = require("cookie-parser");
+
+// server config
+app.use("/", express.static("public"));
+app.use("/", express.static("dist"));
+
+app.use(express.json());
+app.use(cookieParser());
+
+app.get("/*", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
+
+let port = process.env.API_PORT || 8080;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
