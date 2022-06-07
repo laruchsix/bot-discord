@@ -69,6 +69,12 @@ app.use("/", express.static("dist"));
 app.use(express.json());
 app.use(cookieParser());
 
+// include the api
+const apiRouter = require("./src/api/api");
+
+app.use("/api", apiRouter);
+
+
 app.get("/*", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });

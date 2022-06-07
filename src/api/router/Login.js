@@ -22,12 +22,32 @@ router.delete("/logout", (req, res) => {
 router.post("/login", async (req, res) => {
     let {username, password} = req.body;
 
-    let result = await requestManager.RequestAsync({
-        text: 'select * from person where username=($1) and password=($2);',
-        values: [username, password]
-    });
+    // log 
+    requestManager.RequestCallback(
+        `SELECT * FROM Users WHERE username='${username}';`,
+        async (err, result) => {
+            if (err) {
+                throw err;
+            }
 
-    if (result.error) {
+            if (result.length === 0) {
+                res.send({
+                    error : "Invalid username !"
+                })
+            } else {
+                let { value } = await utils.encode_password(password, result[0].salt);
+
+                if (value === result[0].password) {
+                    makeTokenAndConenct(result[0])
+                } else {
+                    res.send({
+                        error : "Invalid password !"
+                    })
+                }
+            }
+        });
+
+   /* if (result.error) {
         console.log("Error while trying to log in");
         res.status(500).send({
             error: result.error
@@ -67,7 +87,7 @@ router.post("/login", async (req, res) => {
                 res.send(tokenContent);
             }
         }
-    }
+    }*/
 });
 
 
