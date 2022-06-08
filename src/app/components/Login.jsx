@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import {useHistory} from "react-router-dom";
-import "../style/Login.css";
+import { useNavigate } from "react-router-dom";
+//import "../style/Login.css";
 
 const Login = ({updateToken, token, title, updateTitle}) => {
     useEffect(() => {
@@ -12,12 +12,13 @@ const Login = ({updateToken, token, title, updateTitle}) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 
-    const history = useHistory();
     const [errorMessage, setErrorMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const validate = (e) => {
         e.preventDefault();
-        const body = JSON.stringify({"name":name, "password" : password});
+        const body = JSON.stringify({"username":name, "password" : password});
         let options = {
             method: "POST",
             body: body,
@@ -33,8 +34,12 @@ const Login = ({updateToken, token, title, updateTitle}) => {
                 if (data.error) {
                     setErrorMessage(data.error);
                 } else {
-                    updateToken(data);
-                    history.push("/");
+                    fetch('/api/cookie')
+                        .then(response => response.json())
+                        .then((data) => {
+                            updateToken(data);
+                            navigate('/');
+                        });
                 } })
     }
 

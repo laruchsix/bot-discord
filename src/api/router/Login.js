@@ -3,6 +3,7 @@ const router = express.Router();
 const utils = require("../utils");
 const requestManager = require("../database/databaseRequest");
 const moment = require("moment");
+const { Routes } = require('react-router-dom');
 
 router.delete("/logout", (req, res) => {
     /*console.log(req.cookies)
@@ -20,6 +21,11 @@ router.delete("/logout", (req, res) => {
     }*/
 });
 
+router.get("/cookie", (req, res) => {
+    res.send(
+        req.cookies.token
+    )
+});
 
 /**
  * 

@@ -26956,9 +26956,10 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
 var _menuCss = require("../style/Menu.css");
+var _login = require("./Login");
+var _loginDefault = parcelHelpers.interopDefault(_login);
 var _s = $RefreshSig$();
 /*import Home from "./home/Home";
-import Login from "./Login";
 import Register  from "./Register";
 import User  from "./user/User";
 
@@ -26966,31 +26967,29 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
     _s();
     const [token, setToken] = (0, _react.useState)("initial");
     const [titlePage, setTitlePage] = (0, _react.useState)("Home");
-    token;
-    /*const updateToken = (value) => {
+    (0, _react.useEffect)(()=>{
+        fetch("/api/cookie").then((response)=>response.json()).then((data)=>{
+            setToken(data);
+        });
+    }, []);
+    const updateToken = (value)=>{
         setToken(value);
-    }
-
-    const updateTitlePage = (value) => {
+    };
+    const updateTitlePage = (value)=>{
         setTitlePage(value);
-    }*/ const userElems = ()=>{
-        if (token || token === "initial") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
+    };
+    const userElems = ()=>{
+        if (!token || token === "initial") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
             className: "nav-button",
             to: "/login",
             children: " Login "
         }, void 0, false, {
             fileName: "src/app/components/Menu.jsx",
-            lineNumber: 37,
+            lineNumber: 42,
             columnNumber: 17
         }, undefined);
-        else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-            children: "user-elems"
-        }, void 0, false, {
-            fileName: "src/app/components/Menu.jsx",
-            lineNumber: 41,
-            columnNumber: 21
-        }, undefined);
-    /*</h1>return (
+        else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false);
+    /*return (
                <>
                    <h1 className={"user-name"}>{token.name}</h1>
                 <button className={"nav-button"} onClick={logout}>Logout</button>
@@ -27028,12 +27027,12 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                             children: titlePage
                         }, void 0, false, {
                             fileName: "src/app/components/Menu.jsx",
-                            lineNumber: 80,
+                            lineNumber: 87,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 79,
+                        lineNumber: 86,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27041,17 +27040,17 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                         children: userElems()
                     }, void 0, false, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 82,
+                        lineNumber: 89,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/app/components/Menu.jsx",
-                lineNumber: 78,
+                lineNumber: 85,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "center",
+                className: "center-container",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("aside", {
                         children: [
@@ -27061,96 +27060,115 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                 children: "Home"
                             }, void 0, false, {
                                 fileName: "src/app/components/Menu.jsx",
-                                lineNumber: 88,
+                                lineNumber: 95,
                                 columnNumber: 21
                             }, undefined),
-                            token && token.admin ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
+                            token?.admin && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
                                 className: "nav-link",
                                 to: "/manage",
                                 children: "Manage User"
                             }, void 0, false, {
                                 fileName: "src/app/components/Menu.jsx",
-                                lineNumber: 91,
+                                lineNumber: 98,
                                 columnNumber: 29
-                            }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false)
+                            }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 87,
+                        lineNumber: 94,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "page-content",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                    path: "/profile",
-                                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                                        children: "Profile"
-                                    }, void 0, false, void 0, void 0)
-                                }, void 0, false, {
+                        className: "center-right-container",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "page-content",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                                            path: "/profile",
+                                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                                children: "Profile"
+                                            }, void 0, false, void 0, void 0)
+                                        }, void 0, false, {
+                                            fileName: "src/app/components/Menu.jsx",
+                                            lineNumber: 104,
+                                            columnNumber: 29
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                                            path: "/login",
+                                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginDefault.default), {
+                                                token: token,
+                                                updateToken: updateToken,
+                                                title: titlePage,
+                                                updateTitle: updateTitlePage
+                                            }, void 0, false, void 0, void 0)
+                                        }, void 0, false, {
+                                            fileName: "src/app/components/Menu.jsx",
+                                            lineNumber: 105,
+                                            columnNumber: 29
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                                            path: "/manage",
+                                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                                children: "Manage"
+                                            }, void 0, false, void 0, void 0)
+                                        }, void 0, false, {
+                                            fileName: "src/app/components/Menu.jsx",
+                                            lineNumber: 110,
+                                            columnNumber: 29
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                                            path: "/",
+                                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                                children: "Home"
+                                            }, void 0, false, void 0, void 0)
+                                        }, void 0, false, {
+                                            fileName: "src/app/components/Menu.jsx",
+                                            lineNumber: 111,
+                                            columnNumber: 29
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "src/app/components/Menu.jsx",
-                                    lineNumber: 97,
-                                    columnNumber: 25
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                    path: "/login",
-                                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                                        children: "Login"
-                                    }, void 0, false, void 0, void 0)
-                                }, void 0, false, {
-                                    fileName: "src/app/components/Menu.jsx",
-                                    lineNumber: 98,
-                                    columnNumber: 25
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                    path: "/manage",
-                                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                                        children: "Manage"
-                                    }, void 0, false, void 0, void 0)
-                                }, void 0, false, {
-                                    fileName: "src/app/components/Menu.jsx",
-                                    lineNumber: 99,
-                                    columnNumber: 25
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                    path: "/",
-                                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                                        children: "Home"
-                                    }, void 0, false, void 0, void 0)
-                                }, void 0, false, {
-                                    fileName: "src/app/components/Menu.jsx",
-                                    lineNumber: 100,
+                                    lineNumber: 103,
                                     columnNumber: 25
                                 }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/app/components/Menu.jsx",
-                            lineNumber: 96,
-                            columnNumber: 21
-                        }, undefined)
-                    }, void 0, false, {
+                            }, void 0, false, {
+                                fileName: "src/app/components/Menu.jsx",
+                                lineNumber: 102,
+                                columnNumber: 21
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("footer", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "copyright-content",
+                                    children: "\xa9Thibault Rucher"
+                                }, void 0, false, {
+                                    fileName: "src/app/components/Menu.jsx",
+                                    lineNumber: 115,
+                                    columnNumber: 25
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/app/components/Menu.jsx",
+                                lineNumber: 114,
+                                columnNumber: 21
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 95,
+                        lineNumber: 101,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/app/components/Menu.jsx",
-                lineNumber: 86,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("footer", {
-                children: "footer"
-            }, void 0, false, {
-                fileName: "src/app/components/Menu.jsx",
-                lineNumber: 104,
+                lineNumber: 93,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/app/components/Menu.jsx",
-        lineNumber: 77,
+        lineNumber: 84,
         columnNumber: 9
     }, undefined);
 /**
@@ -27170,7 +27188,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                             <Home token={token} updateToken={updateToken} title={titlePage} updateTitle={updateTitlePage}/>
                         </Route>
  */ };
-_s(Menu, "c4T5SmR3pehrrcmNUB8xHjedFLY=");
+_s(Menu, "qsH1VXdgyIS7AOMMLQsNtT7zjQw=");
 _c = Menu;
 exports.default = Menu;
 var _c;
@@ -27181,7 +27199,7 @@ $RefreshReg$(_c, "Menu");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","../style/Menu.css":"fMTuK","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fdOAw":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","../style/Menu.css":"fMTuK","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Login":"7IzJr"}],"fdOAw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MemoryRouter", ()=>(0, _reactRouter.MemoryRouter));
@@ -29492,6 +29510,157 @@ module.exports = require("./cjs/react-refresh-runtime.development.js");
     exports.setSignature = setSignature;
 })();
 
-},{}]},["1xC6H","87Ty4","8Wjsw"], "8Wjsw", "parcelRequireddc2")
+},{}],"7IzJr":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$6a23 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$6a23.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
+//import "../style/Login.css";
+const Login = ({ updateToken , token , title , updateTitle  })=>{
+    _s();
+    (0, _react.useEffect)(()=>{
+        if (title !== "Login") updateTitle("Login");
+    }, [
+        title
+    ]);
+    const [name, setName] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const [errorMessage, setErrorMessage] = (0, _react.useState)("");
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const validate = (e)=>{
+        e.preventDefault();
+        const body = JSON.stringify({
+            "username": name,
+            "password": password
+        });
+        let options = {
+            method: "POST",
+            body: body,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+        fetch("api/login", options).then((response)=>response.json()).then((data1)=>{
+            if (data1.error) setErrorMessage(data1.error);
+            else fetch("/api/cookie").then((response)=>response.json()).then((data)=>{
+                updateToken(data);
+                navigate("/");
+            });
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "middle panel",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                className: "title-signin",
+                children: "Sign In"
+            }, void 0, false, {
+                fileName: "src/app/components/Login.jsx",
+                lineNumber: 48,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                onSubmit: (e)=>validate(e),
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: "Email :"
+                    }, void 0, false, {
+                        fileName: "src/app/components/Login.jsx",
+                        lineNumber: 50,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: name,
+                        onChange: (e)=>setName(e.currentTarget.value)
+                    }, void 0, false, {
+                        fileName: "src/app/components/Login.jsx",
+                        lineNumber: 51,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: "Password :"
+                    }, void 0, false, {
+                        fileName: "src/app/components/Login.jsx",
+                        lineNumber: 52,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.currentTarget.value)
+                    }, void 0, false, {
+                        fileName: "src/app/components/Login.jsx",
+                        lineNumber: 53,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            className: "error-message",
+                            children: errorMessage
+                        }, void 0, false, {
+                            fileName: "src/app/components/Login.jsx",
+                            lineNumber: 54,
+                            columnNumber: 22
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/app/components/Login.jsx",
+                        lineNumber: 54,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "center-content",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "basic-button",
+                            children: "Login"
+                        }, void 0, false, {
+                            fileName: "src/app/components/Login.jsx",
+                            lineNumber: 55,
+                            columnNumber: 51
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/app/components/Login.jsx",
+                        lineNumber: 55,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/app/components/Login.jsx",
+                lineNumber: 49,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/app/components/Login.jsx",
+        lineNumber: 47,
+        columnNumber: 9
+    }, undefined);
+};
+_s(Login, "vigJ1UReuVFK8GIWijVj3TiP2po=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c = Login;
+exports.default = Login;
+var _c;
+$RefreshReg$(_c, "Login");
+
+  $parcel$ReactRefreshHelpers$6a23.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}]},["1xC6H","87Ty4","8Wjsw"], "8Wjsw", "parcelRequireddc2")
 
 //# sourceMappingURL=index.js.map

@@ -61,6 +61,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
+const bodyparser = require("body-parser");
 
 // server config
 app.use("/", express.static("public"));

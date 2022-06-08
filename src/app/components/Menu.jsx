@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import {
     BrowserRouter,
@@ -7,9 +7,10 @@ import {
     NavLink
 } from "react-router-dom";
 import "../style/Menu.css";
+import Login from "./Login";
+
 
 /*import Home from "./home/Home";
-import Login from "./Login";
 import Register  from "./Register";
 import User  from "./user/User";
 
@@ -19,27 +20,33 @@ const Menu = () => {
     const [token, setToken] = useState("initial");
     const [titlePage, setTitlePage] = useState("Home");
 
-    if (token === "initial") {
-        // TODO : check if token is in cookies
-    }
+    useEffect(() => {
+        fetch('/api/cookie')
+            .then(response => response.json())
+            .then((data) => {
+                setToken(data);
+            });
+    }, []);
 
-    /*const updateToken = (value) => {
+    const updateToken = (value) => {
         setToken(value);
     }
 
-    const updateTitlePage = (value) => {
+    const updateTitlePage = (value) => { 
         setTitlePage(value);
-    }*/
+    }
 
     const userElems = () => {
-        if (token || token === "initial") 
+        if (!token || token === "initial") 
             return (
                 <NavLink className={"nav-button"} to="/login"> Login </NavLink>
             );
         else 
-          
-            return (<h1>user-elems</h1>);
-            /*</h1>return (
+            return (
+            <>
+                
+            </>)
+            /*return (
                <>
                    <h1 className={"user-name"}>{token.name}</h1>
                 <button className={"nav-button"} onClick={logout}>Logout</button>
@@ -83,27 +90,33 @@ const Menu = () => {
                     {userElems()}
                 </div>
             </header>
-            <div className={"center"}>
+            <div className={"center-container"}>
                 <aside>
                     <NavLink className={"nav-link"} to="/">Home</NavLink>
                     {
-                        (token && token.admin) ?
+                        (token?.admin) &&
                             <NavLink className={"nav-link"} to="/manage">Manage User</NavLink>
-                            : <></>
                     } 
                 </aside>
-                <div className={"page-content"}>
-                    <Routes>
-                        <Route path="/profile" element={<h1>Profile</h1>} />
-                        <Route path="/login" element={<h1>Login</h1>} />
-                        <Route path="/manage" element={<h1>Manage</h1>} />
-                        <Route path="/" element={<h1>Home</h1>} />
-                    </Routes>
-                </div> 
+                <div className="center-right-container">
+                    <div className={"page-content"}>
+                        <Routes>
+                            <Route path="/profile" element={<h1>Profile</h1>} />
+                            <Route path="/login" element={<Login 
+                                                            token={token} 
+                                                            updateToken={updateToken}
+                                                            title={titlePage}
+                                                            updateTitle={updateTitlePage} />} />
+                            <Route path="/manage" element={<h1>Manage</h1>} />
+                            <Route path="/" element={<h1>Home</h1>} />
+                        </Routes>
+                    </div>
+                    <footer>
+                        <div className="copyright-content">©Thibault Rucher</div>
+                    </footer>
+                </div>
             </div>
-            <footer>
-                footer
-            </footer>
+            
         </BrowserRouter>
 
     );

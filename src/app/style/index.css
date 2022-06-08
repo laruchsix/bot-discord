@@ -9,7 +9,26 @@
 }
 
 body {    
-    background-color : #98C1D9;
+    background-color : var(--page-color);
     height: 100vh;
 }
 
+:root {
+    --color : #fff;
+    --header-height : 7vh;
+    --footer-height : 3vh;
+    --page-color: #ffffff;
+
+    /*
+    * header params
+    */
+    --header-color : #5FA8D3;
+    --header-font-color : #ffffff;
+    
+    /*
+    * Aside params
+    */
+    --aside-font-color : #ffffff;
+    --aside-color : #1B4965;
+    --aside-width : 10vw;
+}
