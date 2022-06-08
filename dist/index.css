@@ -12,7 +12,6 @@ body {
 }
 
 :root {
-  --color: #fff;
   --header-height: 7vh;
   --footer-height: 3vh;
   --page-color: #fff;
@@ -31,14 +30,31 @@ header {
   display: flex;
 }
 
+.title-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  color: var(--header-font-color);
+}
+
 aside {
   background-color: var(--aside-color);
   width: var(--aside-width);
+  flex-direction: column;
+  display: flex;
 }
 
 .nav-link {
   cursor: pointer;
   color: var(--aside-font-color);
+  padding: 8px 0 0 5px;
   font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
@@ -61,13 +77,6 @@ aside {
 
 .page-content {
   height: calc(100vh - var(--header-height)  - var(--footer-height) );
-}
-
-.title-container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 footer {
