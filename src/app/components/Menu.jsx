@@ -83,6 +83,13 @@ const Menu = () => {
     return (
         <BrowserRouter>
             <header>
+                <div className="menu-button-container">
+                    <div className="menu-button">
+                        <div className="menu-button-item1"></div>
+                        <div className="menu-button-item2"></div>
+                        <div className="menu-button-item3"></div>
+                    </div>
+                </div>
                 <div className={"title-container"}>
                     <h1 className={"title"}>{titlePage}</h1>
                 </div>

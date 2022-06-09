@@ -14,7 +14,7 @@ body {
 }
 
 :root {
-    --header-height : 7vh;
+    --header-height : 10vh;
     --footer-height : 3vh;
     --page-color: #ffffff;
 
@@ -23,11 +23,17 @@ body {
     */
     --header-color : #5FA8D3;
     --header-font-color : #ffffff;
+    --header-nav-button-color : #CAE9FF;
     
     /*
     * Aside params
     */
     --aside-font-color : #ffffff;
     --aside-color : #1B4965;
-    --aside-width : 10vw;
+    --aside-width : 200px;
+
+    /*
+     * Globaly params
+     */ 
+     --button-font-color : #000000;
 }
