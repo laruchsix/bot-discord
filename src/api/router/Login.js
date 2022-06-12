@@ -71,6 +71,7 @@ router.post("/login", async (req, res) => {
         res.send({
             error : 'You must send a username and a password !'
         })
+        return;
     }
 
     // make the connection

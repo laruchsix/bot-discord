@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import "../style/Menu.css";
 import Login from "./Login";
+import MenuButton from "./utils/MenuButton";
 
 
 /*import Home from "./home/Home";
@@ -80,16 +81,14 @@ const Menu = () => {
             });
     }
 
+    const pressMenu = () => {
+        console.log("pressMenu");
+    }
+
     return (
         <BrowserRouter>
             <header>
-                <div className="menu-button-container">
-                    <div className="menu-button">
-                        <div className="menu-button-item1"></div>
-                        <div className="menu-button-item2"></div>
-                        <div className="menu-button-item3"></div>
-                    </div>
-                </div>
+                <MenuButton onClick={pressMenu}/>
                 <div className={"title-container"}>
                     <h1 className={"title"}>{titlePage}</h1>
                 </div>

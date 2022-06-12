@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-//import "../style/Login.css";
+import "../style/Login.css";
 
 const Login = ({updateToken, token, title, updateTitle}) => {
     useEffect(() => {
@@ -45,14 +45,15 @@ const Login = ({updateToken, token, title, updateTitle}) => {
 
     return (
         <div className={"middle panel"}>
-            <h1 className={"title-signin"}>Sign In</h1>
-            <form  onSubmit={(e) => validate(e)}>
-                <p>Email :</p>
-                <input type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
-                <p>Password :</p>
-                <input type={"password"} value = {password} onChange={(e)=>setPassword(e.currentTarget.value)} />
+            <form onSubmit={(e) => validate(e)}>
+                <h2 className="page-h2 login-segment">Email :</h2>
+                <input className="basic-input" type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
+                <h2 className="page-h2 login-segment">Password :</h2>
+                <input className="basic-input" type={"password"} value = {password} onChange={(e)=>setPassword(e.currentTarget.value)} />
                 <div><p className={"error-message"}>{errorMessage}</p></div>
-                <div className={"center-content"}><button className={"basic-button"}>Login</button></div>
+                <div className={"center-content"}>
+                    <button className={"page-button medium-button"}>Login</button>
+                </div>
             </form>
         </div>
     )

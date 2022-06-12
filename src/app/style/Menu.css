@@ -23,7 +23,7 @@ header {
     background-color: var(--aside-color);
     height: calc(var(--header-height) / 8);
     margin: calc(var(--header-height) / 16) 0px;
-    width: 45px;
+    width: 60px;
     border-radius: 2.2px;
 }
 
@@ -58,6 +58,10 @@ header {
     color: var(--button-font-color);
     text-decoration: none;
     border-radius: 5px;
+}
+
+.nav-button:hover {
+    transform: scale(1.05);
 }
 
 /*

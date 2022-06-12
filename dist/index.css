@@ -22,6 +22,60 @@ body {
   --aside-color: #1b4965;
   --aside-width: 200px;
   --button-font-color: #000;
+  --global-font-color: #000;
+  --text-input-color: #cae9ff;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.5rem;
+}
+
+.basic-input {
+  background-color: var(--text-input-color);
+  width: 15rem;
+  font-size: 1.5rem;
+}
+
+.page-h1 {
+  color: var(--global-font-color);
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.page-h2 {
+  color: var(--global-font-color);
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.page-button {
+  background-color: var(--header-nav-button-color);
+  color: var(--button-font-color);
+  text-decoration: none;
+}
+
+.page-button:hover {
+  background-color: var(--header-color);
+}
+
+.large-button {
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-size: 2.5rem;
+}
+
+.medium-button {
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 1.8rem;
+}
+
+.middle-panel {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 header {
@@ -48,7 +102,7 @@ header {
   background-color: var(--aside-color);
   height: calc(var(--header-height) / 8);
   margin: calc(var(--header-height) / 16) 0px;
-  width: 45px;
+  width: 60px;
   border-radius: 2.2px;
 }
 
@@ -83,6 +137,10 @@ header {
   padding: 10px 30px;
   font-size: 3.9vh;
   text-decoration: none;
+}
+
+.nav-button:hover {
+  transform: scale(1.05);
 }
 
 aside {
@@ -131,6 +189,10 @@ footer {
 .copyright-content {
   padding-bottom: 2px;
   padding-right: 5px;
+}
+
+.login-segment {
+  padding: 15px 0 7px;
 }
 
 /*# sourceMappingURL=index.css.map */
