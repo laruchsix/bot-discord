@@ -74,7 +74,7 @@ body {
 }
 
 .page-button:hover {
-    background-color: var(--header-color);
+    transform: scale(1.05);
 }
 
 .large-button {
@@ -89,9 +89,10 @@ body {
     padding: 5px 20px;
 }
 
-.middle-panel {
+.center-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }

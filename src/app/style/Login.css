@@ -1,3 +1,17 @@
 .login-segment {
     padding: 15px 0px 7px 0px;
+    color: var(--aside-font-color);
+}
+
+.login-button {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.login-panel {
+    background-color: var(--header-color);
+    border-radius: 10px;
+    padding: 15px;
+    width: 20rem;
+    height: fit-content;
 }

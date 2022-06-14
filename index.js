@@ -61,7 +61,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
-const bodyparser = require("body-parser");
+const utils = require("./src/api/utils");
 
 // server config
 app.use("/", express.static("public"));
@@ -70,11 +70,37 @@ app.use("/", express.static("dist"));
 app.use(express.json());
 app.use(cookieParser());
 
+// security 
+app.use("/api/admin/*", (req, res, next) => {
+    utils.isValidAdmin(req, 
+        (isValid) => {
+            if(isValid) {
+                next();
+            } else {
+                res.status(401).send({
+                    error: "invalid token"
+                })
+            }
+        })
+});
+
+app.use("/api/user/*", (req, res, next) => {
+    utils.isValidToken(req, 
+        (isValid) => {
+            if(isValid) {
+                next();
+            } else {
+                res.status(401).send({
+                    error: "invalid token"
+                })
+            }
+        })
+});
+
 // include the api
 const apiRouter = require("./src/api/api");
 
 app.use("/api", apiRouter);
-
 
 app.get("/*", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");

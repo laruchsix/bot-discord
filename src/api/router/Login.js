@@ -3,28 +3,42 @@ const router = express.Router();
 const utils = require("../utils");
 const requestManager = require("../database/databaseRequest");
 const moment = require("moment");
-const { Routes } = require('react-router-dom');
 
-router.delete("/logout", (req, res) => {
-    /*console.log(req.cookies)
+router.delete("/logout", async (req, res) => {
+    console.log(req.cookies)
     if (req.cookies.token === undefined) {
         res.send({
             message: "You are not logged in"
         });
     } else {
-        console.log((utils.removeToken(req.cookies.token.id)) ? "The token has been deleted !" : "The token has not been deleted !");
+        utils.removeToken(req.cookies.token.id, (isDileted) => {
+           console.log(isDileted  ? "The token has been deleted !" : "The token has not been deleted !");
+        });
 
         res.clearCookie("token");
         res.send({
             message: "You are now logged out"
         });
-    }*/
+    }
 });
 
 router.get("/cookie", (req, res) => {
-    res.send(
-        req.cookies.token
-    )
+    if (req.cookies) {
+        utils.isValidToken(req, 
+            (isValid) => {
+                if (isValid) {
+                    console.log("The cookie is valid");
+                    res.send({ token : req.cookies.token });            
+                } else {
+                    console.log("The cookie is not valid");
+                    res.clearCookie("token");
+                    res.send({ token : undefined });
+                }
+            });
+    }
+    else {
+        res.send({ token : undefined });
+    }
 });
 
 /**
@@ -50,10 +64,9 @@ router.get("/cookie", (req, res) => {
                 let token = {
                     id: generatedId,
                     username: user.username,
-                    isAdmin: user.isAdmin ===1 ? true : false
+                    isAdmin: user.isAdmin === 1 ? true : false
                 };
 
-                console.log(token);
 
                 res.cookie("token", token);
                 res.send({
@@ -73,7 +86,7 @@ router.post("/login", async (req, res) => {
         })
         return;
     }
-
+ 
     // make the connection
     requestManager.RequestCallback(
         `SELECT * FROM Users WHERE username='${username}';`,
@@ -87,7 +100,7 @@ router.post("/login", async (req, res) => {
                     error : "Invalid username !"
                 })
             } else {
-                console.log(result[0].salt);
+                //console.log(result[0].salt);
 
                 let { value } = await utils.encode_password(password, result[0].salt);
 
@@ -100,48 +113,6 @@ router.post("/login", async (req, res) => {
                 }
             }
         });
-
-   /* if (result.error) {
-        console.log("Error while trying to log in");
-        res.status(500).send({
-            error: result.error
-        });
-    } else {
-        if (result.result.rows.length === 0) {
-            res.send({
-                error: "wrong username or password"
-            })
-        } else {
-            const now = new Date();
-            const expirationDate = new Date(now.getTime() + (process.env.TOKEN_DURATION_IN_SECONDS * 1000) );
-            //console.log(expirationDate)
-            let user = result.result.rows[0];
-
-            result = await requestManager.RequestAsync({
-                text: 'INSERT INTO token ("person_id", "expired_date") VALUES (($1), ($2)) RETURNING token;',
-                values: [user.id, expirationDate]
-            });
-
-            if (result.error) {
-                console.log("Error while trying insert token into the database");
-                console.log(result)
-                res.status(500).send({
-                    error: result.error
-                });
-            } else {
-                // creat the cookie
-                let tokenContent = {
-                    id : result.result.rows[0].token,
-                    name : user.last_name,
-                    email : user.email,
-                    admin : user.admin
-                };
-                res.cookie("token", tokenContent);
-
-                res.send(tokenContent);
-            }
-        }
-    }*/
 });
 
 

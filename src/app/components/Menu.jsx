@@ -25,9 +25,10 @@ const Menu = () => {
         fetch('/api/cookie')
             .then(response => response.json())
             .then((data) => {
-                setToken(data);
-            });
+                setToken(data.token);
+            }); 
     }, []);
+
 
     const updateToken = (value) => {
         setToken(value);
@@ -38,15 +39,18 @@ const Menu = () => {
     }
 
     const userElems = () => {
-        if (!token || token === "initial") 
+        if (!token || token === "initial") {
             return (
                 <NavLink className={"nav-button"} to="/login"> Login </NavLink>
             );
-        else 
+        }
+        else {
             return (
-            <>
+                <>
+                    <button className={"nav-button"} onClick={logout}>Logout</button>
+                </>)
                 
-            </>)
+        }
             /*return (
                <>
                    <h1 className={"user-name"}>{token.name}</h1>
@@ -76,6 +80,7 @@ const Menu = () => {
         fetch('/api/logout', options)
             .then(response => response.json())
             .then((data) => {
+                console.log(data.message);
                 setToken(); 
                 history.push("/");
             });

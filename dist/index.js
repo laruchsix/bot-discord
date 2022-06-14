@@ -26971,7 +26971,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
     const [titlePage, setTitlePage] = (0, _react.useState)("Home");
     (0, _react.useEffect)(()=>{
         fetch("/api/cookie").then((response)=>response.json()).then((data)=>{
-            setToken(data);
+            setToken(data.token);
         });
     }, []);
     const updateToken = (value)=>{
@@ -26987,10 +26987,20 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
             children: " Login "
         }, void 0, false, {
             fileName: "src/app/components/Menu.jsx",
-            lineNumber: 43,
+            lineNumber: 44,
             columnNumber: 17
         }, undefined);
-        else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false);
+        else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                className: "nav-button",
+                onClick: logout,
+                children: "Logout"
+            }, void 0, false, {
+                fileName: "src/app/components/Menu.jsx",
+                lineNumber: 50,
+                columnNumber: 21
+            }, undefined)
+        }, void 0, false);
     /*return (
                <>
                    <h1 className={"user-name"}>{token.name}</h1>
@@ -27014,6 +27024,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
             }
         };
         fetch("/api/logout", options).then((response)=>response.json()).then((data)=>{
+            console.log(data.message);
             setToken();
             history.push("/");
         });
@@ -27029,7 +27040,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                         onClick: pressMenu
                     }, void 0, false, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 91,
+                        lineNumber: 96,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27039,12 +27050,12 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                             children: titlePage
                         }, void 0, false, {
                             fileName: "src/app/components/Menu.jsx",
-                            lineNumber: 93,
+                            lineNumber: 98,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 92,
+                        lineNumber: 97,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27052,13 +27063,13 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                         children: userElems()
                     }, void 0, false, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 95,
+                        lineNumber: 100,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/app/components/Menu.jsx",
-                lineNumber: 90,
+                lineNumber: 95,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27072,7 +27083,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                 children: "Home"
                             }, void 0, false, {
                                 fileName: "src/app/components/Menu.jsx",
-                                lineNumber: 101,
+                                lineNumber: 106,
                                 columnNumber: 21
                             }, undefined),
                             token?.admin && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
@@ -27081,13 +27092,13 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                 children: "Manage User"
                             }, void 0, false, {
                                 fileName: "src/app/components/Menu.jsx",
-                                lineNumber: 104,
+                                lineNumber: 109,
                                 columnNumber: 29
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 100,
+                        lineNumber: 105,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27104,7 +27115,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, {
                                             fileName: "src/app/components/Menu.jsx",
-                                            lineNumber: 110,
+                                            lineNumber: 115,
                                             columnNumber: 29
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27117,7 +27128,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, {
                                             fileName: "src/app/components/Menu.jsx",
-                                            lineNumber: 111,
+                                            lineNumber: 116,
                                             columnNumber: 29
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27127,7 +27138,7 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, {
                                             fileName: "src/app/components/Menu.jsx",
-                                            lineNumber: 116,
+                                            lineNumber: 121,
                                             columnNumber: 29
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27137,18 +27148,18 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, {
                                             fileName: "src/app/components/Menu.jsx",
-                                            lineNumber: 117,
+                                            lineNumber: 122,
                                             columnNumber: 29
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/app/components/Menu.jsx",
-                                    lineNumber: 109,
+                                    lineNumber: 114,
                                     columnNumber: 25
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/app/components/Menu.jsx",
-                                lineNumber: 108,
+                                lineNumber: 113,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("footer", {
@@ -27157,30 +27168,30 @@ import Manage from "./admin/Manage";*/ const Menu = ()=>{
                                     children: "\xa9Thibault Rucher"
                                 }, void 0, false, {
                                     fileName: "src/app/components/Menu.jsx",
-                                    lineNumber: 121,
+                                    lineNumber: 126,
                                     columnNumber: 25
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/app/components/Menu.jsx",
-                                lineNumber: 120,
+                                lineNumber: 125,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/app/components/Menu.jsx",
-                        lineNumber: 107,
+                        lineNumber: 112,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/app/components/Menu.jsx",
-                lineNumber: 99,
+                lineNumber: 104,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/app/components/Menu.jsx",
-        lineNumber: 89,
+        lineNumber: 94,
         columnNumber: 9
     }, undefined);
 /**
@@ -28981,14 +28992,15 @@ const Login = ({ updateToken , token , title , updateTitle  })=>{
         fetch("api/login", options).then((response)=>response.json()).then((data1)=>{
             if (data1.error) setErrorMessage(data1.error);
             else fetch("/api/cookie").then((response)=>response.json()).then((data)=>{
-                updateToken(data);
+                updateToken(data.token);
                 navigate("/");
             });
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "middle panel",
+        className: "center-content",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+            className: "login-panel ",
             onSubmit: (e)=>validate(e),
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -29044,7 +29056,7 @@ const Login = ({ updateToken , token , title , updateTitle  })=>{
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "center-content",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "page-button medium-button",
+                        className: "page-button medium-button login-button",
                         children: "Login"
                     }, void 0, false, {
                         fileName: "src/app/components/Login.jsx",

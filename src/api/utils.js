@@ -8,6 +8,9 @@
 const crypto = require('crypto');
 const Buffer = require('buffer').Buffer;
 
+const requestManager = require("./database/databaseRequest");
+const moment = require("moment");
+
 /*
  * *******************************************
  * **************** Functions ****************
@@ -56,6 +59,76 @@ module.exports = {
             value: hash.toString('base64'),
             salt: my_salt 
         };
+    },
+    /*
+    * fucntion check if the token is valid or not
+    *
+    * @param req : the http request
+    * 
+    * return : boolean
+    *       true if the token is valid, false otherwise
+    */
+    isValidToken: (req, callback) => {
+        let token = req.cookies.token;
+
+        // if the token doesn't exist
+        if (!token) {
+            console.log("the token don't exist");
+            return callback(false);
+        }
+
+        // make the request to the database
+        expirationDate = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+        let sqlRequest = `SELECT * FROM Token WHERE id = '${token.id}' AND expirationTime > '${expirationDate}';`;
+    
+        requestManager.RequestCallback(sqlRequest,
+            (err, result) => {
+                if (err) {
+                    console.log("error :" + err);
+                    return callback(false);
+                } else {
+                    return callback(result.length !== 0);
+                }
+            });
+    
+    },
+    isValidAdmin: async (req) => {
+        let token = req.cookies.token;
+        let expirationDate = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+        let sqlRequest = "SELECT * FROM Token, Users " +
+                "WHERE Users.id = Token.userId " +
+                `AND Token.id = '${token.id}' ` +
+                `AND expired_date > '${expirationDate}' ` +
+                "AND Users.isAdmin = 1;";
+        
+    
+        requestManager.RequestAsync(sqlRequest,
+            (err, result) => {
+                if (err || result.length === 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+    },
+    /**
+     * 
+     * @param {string} tokenId 
+     * @param {function} callback 
+     */
+    removeToken: (tokenId, callback) => {
+        expirationDate = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+        let sqlRequest = `DELETE FROM Token WHERE id = '${tokenId}' AND expirationTime > '${expirationDate}';`;
+    
+        requestManager.RequestCallback(sqlRequest, 
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                    callback(false);
+                } else {
+                    callback(true);
+                }            
+            });
     }
 }
 
@@ -96,21 +169,7 @@ const removeToken = async (tokenId) => {
     }
 };
 
-const isValidToken = async (req) => {
-    let token = req.cookies.token;
-    let sqlRequest = {
-        text : "SELECT * FROM token WHERE token = ($1) AND expired_date > ($2);",
-        values: [token.id, new Date()]
-    }
 
-    let result = await requestManager.RequestAsync(sqlRequest);
-
-    if (result.error || result.result.rows.length === 0) {
-        return false;
-    } else {
-        return true;
-    }
-};
 
 const isValidAdmin = async (req) => {
     let token = req.cookies.token;

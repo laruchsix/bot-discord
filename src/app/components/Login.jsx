@@ -37,22 +37,22 @@ const Login = ({updateToken, token, title, updateTitle}) => {
                     fetch('/api/cookie')
                         .then(response => response.json())
                         .then((data) => {
-                            updateToken(data);
+                            updateToken(data.token);
                             navigate('/');
                         });
                 } })
     }
 
     return (
-        <div className={"middle panel"}>
-            <form onSubmit={(e) => validate(e)}>
+        <div className={"center-content"}>
+            <form className="login-panel " onSubmit={(e) => validate(e)}>
                 <h2 className="page-h2 login-segment">Email :</h2>
                 <input className="basic-input" type={"text"} value = {name} onChange={(e)=>setName(e.currentTarget.value)} />
                 <h2 className="page-h2 login-segment">Password :</h2>
                 <input className="basic-input" type={"password"} value = {password} onChange={(e)=>setPassword(e.currentTarget.value)} />
                 <div><p className={"error-message"}>{errorMessage}</p></div>
                 <div className={"center-content"}>
-                    <button className={"page-button medium-button"}>Login</button>
+                    <button className={"page-button medium-button login-button"}>Login</button>
                 </div>
             </form>
         </div>

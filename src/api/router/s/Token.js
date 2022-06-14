@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const utils = require("../utils");
-const requestManager = require("../database/databaseRequest");
+const utils = require("../../utils");
+const requestManager = require("../../database/databaseRequest");
 
 
 router.delete("/admin/token/all", async (req, res) => {

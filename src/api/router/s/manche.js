@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const requestManager = require("../database/databaseRequest");
+const requestManager = require("../../database/databaseRequest");
 
 //get all manche from a planning id
 router.get("/manche/:id", (req, res) => {
