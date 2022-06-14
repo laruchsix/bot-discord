@@ -50,6 +50,12 @@ header {
     font-size: 6vh;
 }
 
+.user-name {
+    color: var(--header-font-color);
+    font-size: 3.5vh;
+    margin-right: 22px;
+}
+
 .nav-button {
     background-color: var(--header-nav-button-color);
     margin-right: 15px;
@@ -58,6 +64,7 @@ header {
     color: var(--button-font-color);
     text-decoration: none;
     border-radius: 5px;
+    border-color: var(--header-nav-button-color);
 }
 
 .nav-button:hover {
@@ -89,6 +96,7 @@ aside {
     text-decoration: none;
     font-weight: bold;
     padding: 8px 0px 0px 5px;
+    width: fit-content;
 }
 
 .nav-link:hover {

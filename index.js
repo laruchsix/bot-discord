@@ -72,9 +72,12 @@ app.use(cookieParser());
 
 // security 
 app.use("/api/admin/*", (req, res, next) => {
-    utils.isValidAdmin(req, 
-        (isValid) => {
-            if(isValid) {
+    utils.findUserFromToken(req, 
+        (isValid, person) => {
+
+            if(isValid && person.isAdmin) {
+                req.person = person;
+
                 next();
             } else {
                 res.status(401).send({
@@ -85,11 +88,15 @@ app.use("/api/admin/*", (req, res, next) => {
 });
 
 app.use("/api/user/*", (req, res, next) => {
-    utils.isValidToken(req, 
-        (isValid) => {
+    utils.findUserFromToken(req, 
+        (isValid, person) => {
+
             if(isValid) {
+                req.person = person;
+
                 next();
             } else {
+                console.log("The user try to connect with an invalid token");
                 res.status(401).send({
                     error: "invalid token"
                 })

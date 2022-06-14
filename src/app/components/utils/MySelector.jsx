@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 
-const MySelector = ({ service, updateObjet, isMulti = false, isDisabled = false, object, refresh = true, ...rest }) => {
+const MySelector = ({ service, updateObjet, isMulti = false, isDisabled = false, object, refresh = true, className, ...rest }) => {
     const [apiResponse, setApiResponse] = useState({
       data: {},
       loading: true,
     });
   
     useEffect(() => {
-      fetch(URL + service)
+      fetch(service)
         .then((res) => res.json())
         .then((data) => {
           if (refresh) {
             if (apiResponse !== data) updateObjet("");
           }
-          //console.log(data);
+          console.log(data);
           setApiResponse({
             data: data,
             loading: false,
@@ -35,13 +35,13 @@ const MySelector = ({ service, updateObjet, isMulti = false, isDisabled = false,
     ternary operator. If it is false, it will return the second part of the ternary operator. */
     if (apiResponse.loading) return <p>LOADING ...</p>;
     return (
-      <div style={{ width: "100px", minWidth: "15vw" }}>
+      <>
         {isMulti ? (
           <Select isMulti onChange={handleChange} value={object} options={apiResponse.data} style={{ width: "max-content" }} isDisabled={isDisabled} {...rest} />
         ) : (
           <Select onChange={handleChange} value={object} options={apiResponse.data} style={{ width: "max-content" }} isDisabled={isDisabled} isClearable {...rest} />
         )}
-      </div>
+      </>
     );
 }
 

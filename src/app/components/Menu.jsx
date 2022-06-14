@@ -1,23 +1,19 @@
 import React, {useState, useEffect} from "react";
-
 import {
     BrowserRouter,
     Routes,
     Route,
-    NavLink
+    NavLink,
+    useNavigate
 } from "react-router-dom";
+
 import "../style/Menu.css";
 import Login from "./Login";
 import MenuButton from "./utils/MenuButton";
-
-
-/*import Home from "./home/Home";
-import Register  from "./Register";
-import User  from "./user/User";
-
-import Manage from "./admin/Manage";*/
+import Detector from "./Detector/Detector";
 
 const Menu = () => {
+
     const [token, setToken] = useState("initial");
     const [titlePage, setTitlePage] = useState("Home");
 
@@ -47,8 +43,10 @@ const Menu = () => {
         else {
             return (
                 <>
+                    <h1 className={"user-name"}>{token.username}</h1>
                     <button className={"nav-button"} onClick={logout}>Logout</button>
-                </>)
+                </>
+            );
                 
         }
             /*return (
@@ -81,13 +79,12 @@ const Menu = () => {
             .then(response => response.json())
             .then((data) => {
                 console.log(data.message);
-                setToken(); 
-                history.push("/");
+                setToken();
             });
     }
 
     const pressMenu = () => {
-        console.log("pressMenu");
+        console.log("pressMenu"); 
     }
 
     return (
@@ -105,7 +102,11 @@ const Menu = () => {
                 <aside>
                     <NavLink className={"nav-link"} to="/">Home</NavLink>
                     {
-                        (token?.admin) &&
+                    (token?.username) && 
+                        <NavLink className={"nav-link"} to="/detector">Detector</NavLink>
+                    }
+                    {
+                        (token?.isAdmin) &&
                             <NavLink className={"nav-link"} to="/manage">Manage User</NavLink>
                     } 
                 </aside>
@@ -118,7 +119,11 @@ const Menu = () => {
                                                             updateToken={updateToken}
                                                             title={titlePage}
                                                             updateTitle={updateTitlePage} />} />
-                            <Route path="/manage" element={<h1>Manage</h1>} />
+                            <Route path="/detector" element={<Detector 
+                                                            token={token} 
+                                                            updateToken={updateToken}
+                                                            title={titlePage}
+                                                            updateTitle={updateTitlePage}/>} />
                             <Route path="/" element={<h1>Home</h1>} />
                         </Routes>
                     </div>
@@ -131,23 +136,6 @@ const Menu = () => {
         </BrowserRouter>
 
     );
-/**
- * <Route path="/profile">
-                            <User updateToken={updateToken} token={token}/>
-                        </Route>
-                        <Route path="/login">
-                            <Login updateToken={updateToken} token={token} title={titlePage} updateTitle={updateTitlePage}/>
-                        </Route>
-                        <Route path="/register">
-                            <Register updateToken={updateToken} token={token} title={titlePage} updateTitle={updateTitlePage}/>
-                        </Route>
-                        <Route path="/manage">
-                            <Manage token={token} title={titlePage} updateTitle={updateTitlePage}/>
-                        </Route>
-                        <Route path="/">
-                            <Home token={token} updateToken={updateToken} title={titlePage} updateTitle={updateTitlePage}/>
-                        </Route>
- */
 }
 
 export default Menu;

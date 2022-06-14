@@ -92,22 +92,33 @@ module.exports = {
             });
     
     },
-    isValidAdmin: async (req) => {
+    findUserFromToken: (req, callback) => {
         let token = req.cookies.token;
-        let expirationDate = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-        let sqlRequest = "SELECT * FROM Token, Users " +
-                "WHERE Users.id = Token.userId " +
-                `AND Token.id = '${token.id}' ` +
-                `AND expired_date > '${expirationDate}' ` +
-                "AND Users.isAdmin = 1;";
-        
+
+        // if the token doesn't exist
+        if (!token) {
+            console.log("the token don't exist");
+            return callback(false);
+        }
+
+        // make the request to the database
+        expirationDate = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+        let sqlRequest = `SELECT * 
+            FROM Token, Users 
+            WHERE Token.id = '${token.id}' 
+            AND expirationTime > '${expirationDate}' 
+            AND Users.id = Token.userId;`;
     
-        requestManager.RequestAsync(sqlRequest,
+        requestManager.RequestCallback(sqlRequest,
             (err, result) => {
-                if (err || result.length === 0) {
-                    return false;
+                if (err) {
+                    console.log("error :" + err);
+                    return callback(false);
                 } else {
-                    return true;
+                    return callback(
+                        result.length !== 0, 
+                        (result.length !== 0) ? result[0] : null
+                    );
                 }
             });
     },
