@@ -4,7 +4,6 @@ import "./DSChoser.css";
 
 
 const DSChoser = ({serverChoosed, updateServerChoosed}) => {
-
     return (
         <div className="selecter-container">
             <MySelector service={"/api/user/discordserver/"} object={serverChoosed} updateObjet={updateServerChoosed}/>

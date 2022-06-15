@@ -5,6 +5,7 @@ const fs = require('fs');
 const handleCommand = require('./src/bot/helpers/command');
 const handleMessageComponents = require('./src/bot/helpers/message-component');
 const handleMessage = require('./src/bot/helpers/message');
+const messageDetector = require('./src/bot/messageDetector');
 
 const client = new Client({ 
     intents: [
@@ -29,21 +30,23 @@ for (const file of commandFiles) {
 
 // lanch the bot
 client.once('ready', () => {
-    console.log("je suis pret !");
+    messageDetector.refresh(() => {
+        console.log("the discord Bot is ready !");
+    });
 });
 
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
-
     if (message.content.toLocaleLowerCase().includes("bite"))
         return message.reply("8===D:sweat_drops::sweat_drops::sweat_drops::sweat_drops::sweat_drops:")
 
-    console.log(message);
 
+    messageDetector.filter(message);
 
-    console.log(`The message be posted by ${message.author.username}`);
+    /*console.log(`The message be posted by ${message.author.username}`);
     console.log(`The content is : ${message.content}`);
+    */ 
 })
 
 client.on('interactionCreate', interaction => {

@@ -27225,7 +27225,7 @@ $RefreshReg$(_c, "Menu");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","../style/Menu.css":"fMTuK","./Login":"7IzJr","./utils/MenuButton":"6xtC9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Detector/Detector":"aWIzD"}],"fdOAw":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","../style/Menu.css":"fMTuK","./Login":"7IzJr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./utils/MenuButton":"6xtC9","./Detector/Detector":"aWIzD"}],"fdOAw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MemoryRouter", ()=>(0, _reactRouter.MemoryRouter));
@@ -29098,7 +29098,7 @@ $RefreshReg$(_c, "Login");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","../style/Login.css":"h8qaa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"h8qaa":[function() {},{}],"km3Ru":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../style/Login.css":"h8qaa"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -29682,7 +29682,7 @@ module.exports = require("./cjs/react-refresh-runtime.development.js");
     exports.setSignature = setSignature;
 })();
 
-},{}],"6xtC9":[function(require,module,exports) {
+},{}],"h8qaa":[function() {},{}],"6xtC9":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$fecf = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -29780,6 +29780,12 @@ const Detector = ({ updateToken , token , title , updateTitle  })=>{
         title
     ]);
     const [serverChoosed, setServerChoosed] = (0, _react.useState)("");
+    const [detectors, setDetectors] = (0, _react.useState)([]);
+    const getDetectors = ()=>{
+        if (serverChoosed) fetch("api/user/detector/" + serverChoosed.value).then((response)=>response.json()).then((response)=>{
+            setDetectors(response);
+        });
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "detector-container",
         children: [
@@ -29788,29 +29794,35 @@ const Detector = ({ updateToken , token , title , updateTitle  })=>{
                 updateServerChoosed: setServerChoosed
             }, void 0, false, {
                 fileName: "src/app/components/Detector/Detector.jsx",
-                lineNumber: 29,
+                lineNumber: 40,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detectorTableDefault.default), {
-                serverChoosed: serverChoosed
+                serverChoosed: serverChoosed,
+                getDetectors: getDetectors,
+                detectors: detectors
             }, void 0, false, {
                 fileName: "src/app/components/Detector/Detector.jsx",
-                lineNumber: 33,
+                lineNumber: 44,
                 columnNumber: 13
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detectorFormDefault.default), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detectorFormDefault.default), {
+                serverChoosed: serverChoosed,
+                getDetectors: getDetectors,
+                updateToken: updateToken
+            }, void 0, false, {
                 fileName: "src/app/components/Detector/Detector.jsx",
-                lineNumber: 36,
+                lineNumber: 49,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/app/components/Detector/Detector.jsx",
-        lineNumber: 28,
+        lineNumber: 39,
         columnNumber: 9
     }, undefined);
 };
-_s(Detector, "5yPm+tc67a1G252MtU4AccuUTXo=", false, function() {
+_s(Detector, "zaabIWNJfUsMbs4PW4gkWKUnrhI=", false, function() {
     return [
         (0, _reactRouterDom.useNavigate)
     ];
@@ -29825,7 +29837,7 @@ $RefreshReg$(_c, "Detector");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-router-dom":"fdOAw","./DSChoser":"cN8bw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj","./Detector.css":"8LfMN","./DetectorTable":"NGm7e","./DetectorForm":"4niTR"}],"cN8bw":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","./DSChoser":"cN8bw","./DetectorTable":"NGm7e","./Detector.css":"8LfMN","./DetectorForm":"4niTR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cN8bw":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$c132 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -29849,12 +29861,12 @@ const DSChoser = ({ serverChoosed , updateServerChoosed  })=>{
             updateObjet: updateServerChoosed
         }, void 0, false, {
             fileName: "src/app/components/Detector/DSChoser.jsx",
-            lineNumber: 10,
+            lineNumber: 9,
             columnNumber: 13
         }, undefined)
     }, void 0, false, {
         fileName: "src/app/components/Detector/DSChoser.jsx",
-        lineNumber: 9,
+        lineNumber: 8,
         columnNumber: 9
     }, undefined);
 };
@@ -29868,7 +29880,7 @@ $RefreshReg$(_c, "DSChoser");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./DSChoser.css":"fr2UN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../utils/MySelector":"aGanZ"}],"fr2UN":[function() {},{}],"aGanZ":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../utils/MySelector":"aGanZ","./DSChoser.css":"fr2UN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"aGanZ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$952a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -29894,7 +29906,7 @@ const MySelector = ({ service , updateObjet , isMulti =false , isDisabled =false
             if (refresh) {
                 if (apiResponse !== data) updateObjet("");
             }
-            console.log(data);
+            //console.log(data);
             setApiResponse({
                 data: data,
                 loading: false
@@ -36131,7 +36143,7 @@ function _defineProperty(obj, key, value) {
 }
 module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
-},{}],"8LfMN":[function() {},{}],"NGm7e":[function(require,module,exports) {
+},{}],"fr2UN":[function() {},{}],"NGm7e":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$528e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36191,7 +36203,7 @@ $RefreshReg$(_c, "DetectorTable");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./DetectorTable.css":"fQSj1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fQSj1":[function() {},{}],"4niTR":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./DetectorTable.css":"fQSj1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fQSj1":[function() {},{}],"8LfMN":[function() {},{}],"4niTR":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ab0f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36203,24 +36215,210 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _reactSelect = require("react-select");
+var _reactSelectDefault = parcelHelpers.interopDefault(_reactSelect);
 var _detectorFormCss = require("./DetectorForm.css");
-const DetectorFrom = ()=>{
+var _s = $RefreshSig$();
+const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
+    _s();
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const [errorMessage, setErrorMessage] = (0, _react.useState)("");
+    // form attributs
+    const [isMulti, setIsMulti] = (0, _react.useState)(false);
+    const [wordDetected, setWordDetected] = (0, _react.useState)("");
+    const [response1, setResponse] = (0, _react.useState)("");
+    const [responseType, setResponseType] = (0, _react.useState)("");
+    // TODO add probability
+    // reponseType options
+    const responseTypeOptions = [
+        {
+            value: "react",
+            label: "react"
+        },
+        {
+            value: "awnser",
+            label: "awnser"
+        }
+    ];
+    /**
+     * function to submit the detector into the database
+     * @param e the event
+     */ const addDetector = (e)=>{
+        e.preventDefault();
+        if (!wordDetected || !response1 || !responseType) {
+            setErrorMessage("Please fill all the fields");
+            return;
+        } else {
+            setErrorMessage("");
+            /*const body = JSON.stringify({
+                dsId : serverChoosed.value,
+                isMulti : isMulti,
+                word: wordDetected,
+                response: response,
+                responseType: responseType.value,
+                probability: 100
+            });*/ const body = JSON.stringify({
+                dsId: serverChoosed.value,
+                isMulti: isMulti
+            });
+            //console.log(body);
+            fetch("api/user/detector", {
+                method: "POST",
+                body: body,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            }).then((response)=>{
+                switch(response.status){
+                    case 401:
+                        updateToken();
+                        navigate("/");
+                        break;
+                    case 400:
+                        return response.json();
+                    default:
+                        setErrorMessage("");
+                        getDetectors();
+                }
+            }).then((response)=>{
+                if (response?.errorMessage) setErrorMessage(response.errorMessage);
+            });
+        }
+    };
+    const displayErrorMessage = ()=>{
+        if (errorMessage) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+            className: "error-message",
+            children: errorMessage
+        }, void 0, false, {
+            fileName: "src/app/components/Detector/DetectorForm.jsx",
+            lineNumber: 83,
+            columnNumber: 20
+        }, undefined);
+        else return null;
+    };
+    console.log("errorMessage :");
+    console.log(errorMessage);
+    /**
+     * display a form to add a detector is the server is selected
+     * @returns {JSX.Element|null} the form to add a detector line or null elem
+     */ const displayForm = ()=>{
+        if (serverChoosed) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+            className: "add-detector",
+            onSubmit: (e)=>addDetector(e),
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    className: "page-h1",
+                    children: "Add a detector option"
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 100,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    className: "page-h2",
+                    children: "Is multi detection ?"
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 102,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    type: "checkbox",
+                    value: isMulti,
+                    onChange: (e)=>setIsMulti(e.currentTarget.value)
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 103,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    className: "page-h2",
+                    children: "Main word:"
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 108,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    className: "basic-input",
+                    type: "text",
+                    value: wordDetected,
+                    onChange: (e)=>setWordDetected(e.currentTarget.value)
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 109,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    className: "page-h2",
+                    children: "Response Type:"
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 115,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactSelectDefault.default), {
+                    className: "basic-input",
+                    value: responseType,
+                    options: responseTypeOptions,
+                    onChange: setResponseType
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 116,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    className: "page-h2",
+                    children: "Response :"
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 122,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    className: "basic-input",
+                    type: "text",
+                    value: response1,
+                    onChange: (e)=>setResponse(e.currentTarget.value)
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 123,
+                    columnNumber: 21
+                }, undefined),
+                displayErrorMessage(),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    className: "page-button medium-button",
+                    children: "Add"
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 130,
+                    columnNumber: 21
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/app/components/Detector/DetectorForm.jsx",
+            lineNumber: 98,
+            columnNumber: 17
+        }, undefined);
+        else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false);
+    };
     // render component
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "detector-form",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-            children: "detector-form"
-        }, void 0, false, {
-            fileName: "src/app/components/Detector/DetectorForm.jsx",
-            lineNumber: 9,
-            columnNumber: 13
-        }, undefined)
+        children: displayForm()
     }, void 0, false, {
         fileName: "src/app/components/Detector/DetectorForm.jsx",
-        lineNumber: 8,
+        lineNumber: 143,
         columnNumber: 9
     }, undefined);
 };
+_s(DetectorFrom, "0LG7lvYG6rCypWXGutIFIZZOEoQ=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
 _c = DetectorFrom;
 exports.default = DetectorFrom;
 var _c;
@@ -36231,6 +36429,6 @@ $RefreshReg$(_c, "DetectorFrom");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./DetectorForm.css":"fNGXq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fNGXq":[function() {},{}]},["1xC6H","87Ty4","8Wjsw"], "8Wjsw", "parcelRequireddc2")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-select":"2Hkye","./DetectorForm.css":"fNGXq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}],"fNGXq":[function() {},{}]},["1xC6H","87Ty4","8Wjsw"], "8Wjsw", "parcelRequireddc2")
 
 //# sourceMappingURL=index.js.map

@@ -51,6 +51,7 @@ body {
 
 .basic-input {
     background-color: var(--text-input-color);
+    border-radius: 3px;
     font-size: 1.5rem;
     width: 15rem;
 }
@@ -70,6 +71,7 @@ body {
 .page-button {
     background-color: var(--header-nav-button-color);
     color: var(--button-font-color);
+    border-color: var(--header-nav-button-color);
     text-decoration: none;
 }
 

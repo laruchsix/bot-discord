@@ -14,7 +14,7 @@ const MySelector = ({ service, updateObjet, isMulti = false, isDisabled = false,
           if (refresh) {
             if (apiResponse !== data) updateObjet("");
           }
-          console.log(data);
+          //console.log(data);
           setApiResponse({
             data: data,
             loading: false,

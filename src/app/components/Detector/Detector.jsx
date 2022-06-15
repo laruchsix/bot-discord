@@ -22,7 +22,18 @@ const Detector = ({updateToken, token, title, updateTitle}) => {
         }
     }, [title])
 
-    const [serverChoosed, setServerChoosed] = useState("");  
+    const [serverChoosed, setServerChoosed] = useState(""); 
+    const [detectors, setDetectors] = useState([]);
+
+    const getDetectors = () => {
+        if (serverChoosed) {
+            fetch("api/user/detector/" + serverChoosed.value)
+            .then((response) => response.json())
+            .then((response) => {
+                setDetectors(response);
+            });
+        }
+    }
 
     return (
         <div className="detector-container">
@@ -31,9 +42,14 @@ const Detector = ({updateToken, token, title, updateTitle}) => {
                 updateServerChoosed={setServerChoosed}/>
 
             <DetectorTable 
-                serverChoosed={serverChoosed}/> 
+                serverChoosed={serverChoosed}
+                getDetectors={getDetectors}
+                detectors={detectors}/> 
                 
-            <DetectorFrom/>
+            <DetectorFrom
+                serverChoosed={serverChoosed}
+                getDetectors={getDetectors}
+                updateToken={updateToken}/>
         </div>    
     )
 }

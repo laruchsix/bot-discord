@@ -18,7 +18,7 @@ router.get("/user/discordserver/", (req, res) => {
         AND Users.id = Subscribes.userId 
         AND DiscordServer.id = Subscribes.discordServerId;`;
 
-console.log(sqlRequest);
+    //console.log(sqlRequest);
 
     requestManager.RequestCallback(sqlRequest, (err, result) => {
         if (err) {
