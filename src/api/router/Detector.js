@@ -3,6 +3,49 @@ const router = express.Router();
 const requestManager = require("../database/databaseRequest");
 const messageDetector = require("../../bot/messageDetector");
 
+router.get("/user/detector/:id", (req, res) => {
+    let sqlRequest =
+        `SELECT * 
+        FROM Detector 
+        WHERE discordServerId = ${req.params.id};`;
+
+    requestManager.RequestCallback(sqlRequest, 
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send(err);
+            } else {
+                res.send(result);
+            }
+    });
+
+});
+
+router.delete("/user/detector/:id", (req, res) => {
+    let { id } = req.params;
+
+    if (!id) {
+        res.status(400).send({ error : "missing id" });
+        return;
+    }
+
+    let sqlRequest =
+        `DELETE FROM Detector 
+        WHERE id = ${id};`;
+
+    requestManager.RequestCallback(sqlRequest,
+        (err, result) => {
+            if(err) {
+                console.log(err);
+                res.status(500).send("Error delete detector");
+                return;
+            }
+
+            console.log(result);
+            res.send(result);
+    });
+});
+
 router.post("/user/detector/", (req, res) => {
     const {
         dsId,

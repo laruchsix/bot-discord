@@ -29783,18 +29783,27 @@ const Detector = ({ updateToken , token , title , updateTitle  })=>{
     const [detectors, setDetectors] = (0, _react.useState)([]);
     const getDetectors = ()=>{
         if (serverChoosed) fetch("api/user/detector/" + serverChoosed.value).then((response)=>response.json()).then((response)=>{
+            console.log(response);
             setDetectors(response);
         });
     };
+    const updateServerChoosed = (server)=>{
+        if (server !== serverChoosed) setServerChoosed(server);
+    };
+    (0, _react.useEffect)(()=>{
+        getDetectors();
+    }, [
+        serverChoosed
+    ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "detector-container",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _dschoserDefault.default), {
                 serverChoosed: serverChoosed,
-                updateServerChoosed: setServerChoosed
+                updateServerChoosed: updateServerChoosed
             }, void 0, false, {
                 fileName: "src/app/components/Detector/Detector.jsx",
-                lineNumber: 40,
+                lineNumber: 51,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detectorTableDefault.default), {
@@ -29803,7 +29812,7 @@ const Detector = ({ updateToken , token , title , updateTitle  })=>{
                 detectors: detectors
             }, void 0, false, {
                 fileName: "src/app/components/Detector/Detector.jsx",
-                lineNumber: 44,
+                lineNumber: 55,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detectorFormDefault.default), {
@@ -29812,17 +29821,17 @@ const Detector = ({ updateToken , token , title , updateTitle  })=>{
                 updateToken: updateToken
             }, void 0, false, {
                 fileName: "src/app/components/Detector/Detector.jsx",
-                lineNumber: 49,
+                lineNumber: 60,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/app/components/Detector/Detector.jsx",
-        lineNumber: 39,
+        lineNumber: 50,
         columnNumber: 9
     }, undefined);
 };
-_s(Detector, "zaabIWNJfUsMbs4PW4gkWKUnrhI=", false, function() {
+_s(Detector, "8Q2Gb0LkX+sUubxrv65pcaWxS30=", false, function() {
     return [
         (0, _reactRouterDom.useNavigate)
     ];
@@ -36156,21 +36165,151 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _detectorTableCss = require("./DetectorTable.css");
-const DetectorTable = ({ serverChoosed  })=>{
+const DetectorTable = ({ serverChoosed , getDetectors , detectors  })=>{
+    const deleteDetector = (id)=>{
+        fetch("/api/user/detector/" + id, {
+            method: "DELETE"
+        }).then((res)=>{
+            if (res.status === 200) getDetectors();
+        });
+    };
     // display the table
     const displayTable = ()=>{
-        if (serverChoosed) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-            children: "the server have been chosed"
-        }, void 0, false, {
+        if (serverChoosed && detectors) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("table", {
+            className: "detector-table",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("thead", {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("tr", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
+                                children: "Is Mutli"
+                            }, void 0, false, {
+                                fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                lineNumber: 23,
+                                columnNumber: 29
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
+                                children: "Word"
+                            }, void 0, false, {
+                                fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                lineNumber: 24,
+                                columnNumber: 29
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
+                                children: "Probability"
+                            }, void 0, false, {
+                                fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                lineNumber: 25,
+                                columnNumber: 29
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
+                                children: "Response Type"
+                            }, void 0, false, {
+                                fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                lineNumber: 26,
+                                columnNumber: 29
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
+                                children: "Response"
+                            }, void 0, false, {
+                                fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                lineNumber: 27,
+                                columnNumber: 29
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
+                                children: "Delete"
+                            }, void 0, false, {
+                                fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                lineNumber: 28,
+                                columnNumber: 29
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/app/components/Detector/DetectorTable.jsx",
+                        lineNumber: 22,
+                        columnNumber: 25
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                    lineNumber: 21,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("tbody", {
+                    children: detectors.map((detector)=>{
+                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("tr", {
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
+                                    children: detector.isMulti
+                                }, void 0, false, {
+                                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                    lineNumber: 36,
+                                    columnNumber: 41
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
+                                    children: detector.word
+                                }, void 0, false, {
+                                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                    lineNumber: 37,
+                                    columnNumber: 41
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
+                                    children: detector.probability
+                                }, void 0, false, {
+                                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                    lineNumber: 38,
+                                    columnNumber: 41
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
+                                    children: detector.responseType
+                                }, void 0, false, {
+                                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                    lineNumber: 39,
+                                    columnNumber: 41
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
+                                    children: detector.response
+                                }, void 0, false, {
+                                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                    lineNumber: 40,
+                                    columnNumber: 41
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                        onClick: ()=>deleteDetector(detector.id),
+                                        children: "Delete"
+                                    }, void 0, false, {
+                                        fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                        lineNumber: 41,
+                                        columnNumber: 45
+                                    }, undefined)
+                                }, void 0, false, {
+                                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                                    lineNumber: 41,
+                                    columnNumber: 41
+                                }, undefined)
+                            ]
+                        }, detector.id, true, {
+                            fileName: "src/app/components/Detector/DetectorTable.jsx",
+                            lineNumber: 35,
+                            columnNumber: 37
+                        }, undefined);
+                    })
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorTable.jsx",
+                    lineNumber: 31,
+                    columnNumber: 21
+                }, undefined)
+            ]
+        }, void 0, true, {
             fileName: "src/app/components/Detector/DetectorTable.jsx",
-            lineNumber: 10,
+            lineNumber: 20,
             columnNumber: 17
         }, undefined);
         else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             children: "You have to chose a server"
         }, void 0, false, {
             fileName: "src/app/components/Detector/DetectorTable.jsx",
-            lineNumber: 14,
+            lineNumber: 51,
             columnNumber: 17
         }, undefined);
     };
@@ -36182,14 +36321,14 @@ const DetectorTable = ({ serverChoosed  })=>{
                 children: "detector-table"
             }, void 0, false, {
                 fileName: "src/app/components/Detector/DetectorTable.jsx",
-                lineNumber: 22,
+                lineNumber: 59,
                 columnNumber: 13
             }, undefined),
             displayTable()
         ]
     }, void 0, true, {
         fileName: "src/app/components/Detector/DetectorTable.jsx",
-        lineNumber: 21,
+        lineNumber: 58,
         columnNumber: 9
     }, undefined);
 };
@@ -36251,16 +36390,13 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
             return;
         } else {
             setErrorMessage("");
-            /*const body = JSON.stringify({
-                dsId : serverChoosed.value,
-                isMulti : isMulti,
+            const body = JSON.stringify({
+                dsId: serverChoosed.value,
+                isMulti: isMulti,
                 word: wordDetected,
-                response: response,
+                response: response1,
                 responseType: responseType.value,
                 probability: 100
-            });*/ const body = JSON.stringify({
-                dsId: serverChoosed.value,
-                isMulti: isMulti
             });
             //console.log(body);
             fetch("api/user/detector", {
@@ -36287,19 +36423,6 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
             });
         }
     };
-    const displayErrorMessage = ()=>{
-        if (errorMessage) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-            className: "error-message",
-            children: errorMessage
-        }, void 0, false, {
-            fileName: "src/app/components/Detector/DetectorForm.jsx",
-            lineNumber: 83,
-            columnNumber: 20
-        }, undefined);
-        else return null;
-    };
-    console.log("errorMessage :");
-    console.log(errorMessage);
     /**
      * display a form to add a detector is the server is selected
      * @returns {JSX.Element|null} the form to add a detector line or null elem
@@ -36313,7 +36436,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     children: "Add a detector option"
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 100,
+                    lineNumber: 86,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -36321,7 +36444,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     children: "Is multi detection ?"
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 102,
+                    lineNumber: 88,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -36330,7 +36453,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     onChange: (e)=>setIsMulti(e.currentTarget.value)
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 103,
+                    lineNumber: 89,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -36338,7 +36461,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     children: "Main word:"
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 108,
+                    lineNumber: 94,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -36348,7 +36471,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     onChange: (e)=>setWordDetected(e.currentTarget.value)
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 109,
+                    lineNumber: 95,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -36356,7 +36479,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     children: "Response Type:"
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 115,
+                    lineNumber: 101,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactSelectDefault.default), {
@@ -36366,7 +36489,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     onChange: setResponseType
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 116,
+                    lineNumber: 102,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -36374,7 +36497,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     children: "Response :"
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 122,
+                    lineNumber: 108,
                     columnNumber: 21
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -36384,22 +36507,29 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
                     onChange: (e)=>setResponse(e.currentTarget.value)
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 123,
+                    lineNumber: 109,
                     columnNumber: 21
                 }, undefined),
-                displayErrorMessage(),
+                errorMessage && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "error-message",
+                    children: errorMessage
+                }, void 0, false, {
+                    fileName: "src/app/components/Detector/DetectorForm.jsx",
+                    lineNumber: 117,
+                    columnNumber: 29
+                }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                     className: "page-button medium-button",
                     children: "Add"
                 }, void 0, false, {
                     fileName: "src/app/components/Detector/DetectorForm.jsx",
-                    lineNumber: 130,
+                    lineNumber: 119,
                     columnNumber: 21
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/app/components/Detector/DetectorForm.jsx",
-            lineNumber: 98,
+            lineNumber: 84,
             columnNumber: 17
         }, undefined);
         else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false);
@@ -36410,7 +36540,7 @@ const DetectorFrom = ({ serverChoosed , getDetectors , updateToken  })=>{
         children: displayForm()
     }, void 0, false, {
         fileName: "src/app/components/Detector/DetectorForm.jsx",
-        lineNumber: 143,
+        lineNumber: 132,
         columnNumber: 9
     }, undefined);
 };
@@ -36429,6 +36559,6 @@ $RefreshReg$(_c, "DetectorFrom");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-select":"2Hkye","./DetectorForm.css":"fNGXq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}],"fNGXq":[function() {},{}]},["1xC6H","87Ty4","8Wjsw"], "8Wjsw", "parcelRequireddc2")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","react-select":"2Hkye","./DetectorForm.css":"fNGXq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fNGXq":[function() {},{}]},["1xC6H","87Ty4","8Wjsw"], "8Wjsw", "parcelRequireddc2")
 
 //# sourceMappingURL=index.js.map

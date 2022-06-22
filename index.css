@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-family: Garamond, serif;
+}
+
+body {
+  background-color: var(--page-color);
+  height: 100vh;
+}
+
+:root {
+  --header-height: 10vh;
+  --footer-height: 3vh;
+  --page-color: #fff;
+  --header-color: #5fa8d3;
+  --header-font-color: #fff;
+  --header-nav-button-color: #cae9ff;
+  --aside-font-color: #fff;
+  --aside-color: #1b4965;
+  --aside-width: 200px;
+  --button-font-color: #000;
+  --global-font-color: #000;
+  --text-input-color: #cae9ff;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.5rem;
+}
+
+.basic-input {
+  background-color: var(--text-input-color);
+  width: 15rem;
+  border-radius: 3px;
+  font-size: 1.5rem;
+}
+
+.page-h1 {
+  color: var(--global-font-color);
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.page-h2 {
+  color: var(--global-font-color);
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.page-button {
+  background-color: var(--header-nav-button-color);
+  color: var(--button-font-color);
+  border-color: var(--header-nav-button-color);
+  text-decoration: none;
+}
+
+.page-button:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.large-button {
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-size: 2.5rem;
+}
+
+.medium-button {
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 1.8rem;
+}
+
+.center-content {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+header {
+  height: var(--header-height);
+  background-color: var(--header-color);
+  grid-template-areas: "menu-button title left-buttons";
+  grid-auto-columns: 1fr;
+  display: grid;
+}
+
+.menu-button-container {
+  grid-area: menu-button;
+}
+
+.menu-button {
+  cursor: pointer;
+  margin: calc(var(--header-height) / 8);
+  width: fit-content;
+  flex-direction: column;
+  display: flex;
+}
+
+.menu-button > div {
+  background-color: var(--aside-color);
+  height: calc(var(--header-height) / 8);
+  margin: calc(var(--header-height) / 16) 0px;
+  width: 60px;
+  border-radius: 2.2px;
+}
+
+.user-info {
+  grid-area: left-buttons;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+
+.title-container {
+  grid-area: title;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  color: var(--header-font-color);
+  font-size: 6vh;
+}
+
+.user-name {
+  color: var(--header-font-color);
+  margin-right: 22px;
+  font-size: 3.5vh;
+}
+
+.nav-button {
+  background-color: var(--header-nav-button-color);
+  color: var(--button-font-color);
+  border-color: var(--header-nav-button-color);
+  border-radius: 5px;
+  margin-right: 15px;
+  padding: 10px 30px;
+  font-size: 3.9vh;
+  text-decoration: none;
+}
+
+.nav-button:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+aside {
+  background-color: var(--aside-color);
+  width: var(--aside-width);
+  flex-direction: column;
+  display: flex;
+}
+
+.nav-link {
+  cursor: pointer;
+  color: var(--aside-font-color);
+  width: fit-content;
+  padding: 8px 0 0 5px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.center-right-container {
+  height: calc(100vh - var(--header-height) );
+  width: 100%;
+}
+
+.center-container {
+  height: calc(100vh - var(--header-height) );
+  width: 100%;
+  display: flex;
+}
+
+.page-content {
+  height: calc(100vh - var(--header-height)  - var(--footer-height) );
+}
+
+footer {
+  height: 3vh;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  display: flex;
+}
+
+.copyright-content {
+  padding-bottom: 2px;
+  padding-right: 5px;
+}
+
+.login-segment {
+  color: var(--aside-font-color);
+  padding: 15px 0 7px;
+}
+
+.login-button {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.login-panel {
+  background-color: var(--header-color);
+  width: 20rem;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.selecter-container {
+  min-width: 150px;
+  width: 300px;
+  font-size: 1.5em;
+}
+
+
+
+
+
+
+
+/*# sourceMappingURL=index.css.map */

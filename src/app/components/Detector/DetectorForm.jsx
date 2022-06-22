@@ -34,17 +34,13 @@ const DetectorFrom = ({ serverChoosed, getDetectors, updateToken }) => {
             return;
         } else {
             setErrorMessage("");
-            /*const body = JSON.stringify({
+            const body = JSON.stringify({
                 dsId : serverChoosed.value,
                 isMulti : isMulti,
                 word: wordDetected,
                 response: response,
                 responseType: responseType.value,
                 probability: 100
-            });*/
-            const body = JSON.stringify({
-                dsId : serverChoosed.value,
-                isMulti : isMulti
             });
 
             //console.log(body);
@@ -77,16 +73,6 @@ const DetectorFrom = ({ serverChoosed, getDetectors, updateToken }) => {
                 });
         }
     }
-
-    const displayErrorMessage = () => {
-        if (errorMessage) {
-            return <p className="error-message">{errorMessage}</p>
-        } else 
-            return null
-    }
-
-    console.log("errorMessage :");
-    console.log(errorMessage);
 
     /**
      * display a form to add a detector is the server is selected
@@ -125,8 +111,11 @@ const DetectorFrom = ({ serverChoosed, getDetectors, updateToken }) => {
                         type={"text"} 
                         value={response} 
                         onChange={(e)=>setResponse(e.currentTarget.value)} />
-                   
-                    {displayErrorMessage()}
+                    
+                    {
+                        errorMessage && 
+                            <p className="error-message">{errorMessage}</p>
+                    }
                     <button className={"page-button medium-button"}>Add</button>
                 </form>
             )

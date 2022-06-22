@@ -30,16 +30,27 @@ const Detector = ({updateToken, token, title, updateTitle}) => {
             fetch("api/user/detector/" + serverChoosed.value)
             .then((response) => response.json())
             .then((response) => {
+                console.log(response);
                 setDetectors(response);
             });
         }
     }
 
+    const updateServerChoosed = (server) => {
+        if (server !== serverChoosed) {
+            setServerChoosed(server);
+        }
+    }
+    
+    useEffect(() => {
+        getDetectors();
+    }, [serverChoosed]);
+
     return (
         <div className="detector-container">
             <DSChoser 
                 serverChoosed={serverChoosed} 
-                updateServerChoosed={setServerChoosed}/>
+                updateServerChoosed={updateServerChoosed}/>
 
             <DetectorTable 
                 serverChoosed={serverChoosed}

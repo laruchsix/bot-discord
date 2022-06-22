@@ -57,7 +57,7 @@ client.on('interactionCreate', interaction => {
 
 });
 
-client.login(config.discord_bot_token);
+client.login(process.env.DISCORD_BOT_TOKEN);
 
 // the server
 const express = require("express");

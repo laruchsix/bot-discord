@@ -16,3 +16,6 @@ dist/*
 .parcel-cache/c03f3f73dba0fc39.txt
 .parcel-cache/data.mdb
 .parcel-cache/lock.mdb
+
+.env
+.env
