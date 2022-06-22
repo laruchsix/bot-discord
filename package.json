@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
     "startdev": "nodemon server.js",
     "startweb": "parcel src/app/index.jsx",
     "build": "parcel build src/app/index.jsx"
