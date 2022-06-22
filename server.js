@@ -1,5 +1,4 @@
 const { Client, Intents, Collection } = require('discord.js');
-const config = require('./config.json');
 const fs = require('fs');
 
 const handleCommand = require('./src/bot/helpers/command');
